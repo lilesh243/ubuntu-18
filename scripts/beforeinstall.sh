@@ -17,30 +17,30 @@ sudo ln -s /etc/nginx/sites-available/tech.conf /etc/nginx/sites-enabled/tech.co
 sudo service springboot stop
 
 # create springboot service
-cat > /etc/init/springboot.conf <<'EOF'
+#cat > /etc/init/springboot.conf <<'EOF'
 
-description "springboot Server"
+#description "springboot Server"
 
-  start on runlevel [2345]
-  stop on runlevel [!2345]
-  respawn
-  respawn limit 10 5
+ # start on runlevel [2345]
+  #stop on runlevel [!2345]
+  #respawn
+  #respawn limit 10 5
 
   # run as non privileged user 
   # add user with this command:
   ## adduser --system --ingroup www-data --home /opt/apache-tomcat apache-tomcat
   # Ubuntu 12.04: (use 'exec sudo -u apache-tomcat' when using 10.04)
-  setuid ubuntu
-  setgid ubuntu
+  #setuid ubuntu
+  #setgid ubuntu
 
   # adapt paths:
   
-  exec java -jar /home/ubuntu/deploy/spring-boot-web-0.0.1-SNAPSHOT.jar  
+  #exec java -jar /home/ubuntu/deploy/spring-boot-web-0.0.1-SNAPSHOT.jar  
 
   # cleanup temp directory after stop
-  post-stop script
-  end script
-EOF
+ # post-stop script
+ # end script
+#EOF
 
 cat > /etc/systemd/system/springboot.service <<'EOF'
 [Unit]
